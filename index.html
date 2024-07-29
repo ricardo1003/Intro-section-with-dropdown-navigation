@@ -16,11 +16,14 @@
     <img src="./images/logo.svg" alt="snap">
     <nav class="opened">
       <button type="button" class="openNav">
-        <img src="./images/icon-menu.svg" alt="menu">
+        <picture>
+          <img src="./images/icon-menu.svg" alt="menu">
+          <img src="./images/icon-close-menu.svg" alt="close">
+        </picture>
       </button>
       <div class="links">
         <div class="features">
-          <button type="button">Features</button>
+          <button type="button" class="expand">Features</button>
           <ul>
             <li><img src="./images/icon-todo.svg" alt="todo">
               <a href="">Todo List</a>
@@ -37,7 +40,7 @@
           </ul>
         </div>
         <div class="Company">
-          <button type="button">Company</button>
+          <button type="button" class="expand">Company</button>
           <ul>
             <li>
               <a href="">History</a>
@@ -58,6 +61,7 @@
         </div>
       </div>
     </nav>
+    <div class="filter"></div>
   </header>
   <main>
     <img src="./images/image-hero-mobile.png" alt="hero">

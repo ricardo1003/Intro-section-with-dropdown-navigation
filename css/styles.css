@@ -1,6 +1,8 @@
 *{
     margin: 0;
     box-sizing: border-box;
+    background-color: #ffffff00;
+    border: none;
     font-family: "Epilogue";
     color: hsl(0, 0%, 8%);
 }
@@ -18,18 +20,26 @@ header{
     display: flex;
     justify-content: space-between;
 }
+nav .links{
+    display: none;
+}
 .openNav{
-    border: none;
-    background-color: #ffffff00;
     cursor: pointer;
+}
+.openNav picture :last-child{
+    display: none;
+}
+.filter{
+    display: none;
 }
 section{
     padding: 1em;
     text-align: center;
 }
 h1{
-    font-size: 1.654em;
     margin: 18px 0;
+    font-size: 1.654em;
+    font-weight: 700;
 }
 section> p{
     font-size: .9em;
@@ -60,7 +70,105 @@ footer{
 /* nav when opened */
 
 nav.opened{
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+}
+nav.opened .openNav{
+    align-self: flex-end;
+}
+.openNav picture :first-child{
+    display: none;
+}
+.openNav picture :last-child{
     display: inline;
+}
+nav.opened .links{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+nav.opened .expand{
+    padding: 0;
+    background-color: #fffff000;
+    border: none;
+    font-size: 1em;
+    font-weight: 500;
+    color: hsl(0, 0%, 41%);
+}
+nav.opened .expand::after{
+    content: "";
+    width: 10px;
+    aspect-ratio: 1/1;
+    margin-left: 10px;
+    display: inline-block;
+    background: url("../images/icon-arrow-down.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+nav.opened ul{
+    padding-left: 1em;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+nav.opened .expand ~ ul{
+    height: 0;
+    overflow: hidden;
+}
+nav.opened .expand:focus{
+    margin-bottom: 10px;
+}
+nav.opened .expand:focus::after{
+    transform: rotate(180deg);
+
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+nav.opened .expand:focus ~ ul{
+    height: auto;
+}
+nav.opened a{
+    color: hsl(0, 0%, 41%);
+    text-decoration: none;
+}
+nav.opened .buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+nav.opened .buttons button{
+    height: 2.5em;
+    color: hsl(0, 0%, 41%);
+}
+nav.opened .buttons button:last-of-type{
+    border-radius: 10px;
+    border: 2px solid hsl(0, 0%, 41%);
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+nav.opened ~ .filter{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .attribution { font-size: 11px; text-align: center; }
