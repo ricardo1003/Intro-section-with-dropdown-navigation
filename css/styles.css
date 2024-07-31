@@ -19,6 +19,7 @@ header{
     padding: 1em;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 nav .links{
     display: none;
@@ -68,8 +69,9 @@ footer{
 }
 
 /* nav when opened */
-
-nav.opened{
+nav.opened,
+nav.closed{
+    min-width: 166.75px;
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -79,8 +81,12 @@ nav.opened{
     right: 0;
     bottom: 0;
     background-color: #fff;
+    animation-name: navOpening;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
 }
-nav.opened .openNav{
+nav.opened .openNav,
+nav.closed .openNav{
     align-self: flex-end;
 }
 .openNav picture :first-child{
@@ -89,21 +95,25 @@ nav.opened .openNav{
 .openNav picture :last-child{
     display: inline;
 }
-nav.opened .links{
+nav.opened .links,
+nav.closed .links{
     margin-top: 1em;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-nav.opened .expand{
+nav.opened .expand,
+nav.closed .expand{
     padding: 0;
     background-color: #fffff000;
     border: none;
     font-size: 1em;
     font-weight: 500;
     color: hsl(0, 0%, 41%);
+    cursor: pointer;
 }
-nav.opened .expand::after{
+nav.opened .expand::after,
+nav.closed .expand::after{
     content: "";
     width: 10px;
     aspect-ratio: 1/1;
@@ -113,54 +123,66 @@ nav.opened .expand::after{
     background-position: center;
     background-repeat: no-repeat;
 }
-nav.opened ul{
+nav.opened ul,
+nav.closed ul{
     padding-left: 1em;
     list-style-type: none;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-nav.opened .expand ~ ul{
+nav.opened .expand ~ ul,
+nav.closed .expand ~ ul{
     height: 0;
+    display: none;
     overflow: hidden;
 }
-nav.opened .expand:focus{
+nav.opened .expand.expanded,
+nav.closed .expand.expanded{
     margin-bottom: 10px;
 }
-nav.opened .expand:focus::after{
+nav.opened .expand.expanded::after,
+nav.closed .expand.expanded::after{
     transform: rotate(180deg);
-
+    
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     -o-transform: rotate(180deg);
 }
-nav.opened .expand:focus ~ ul{
+nav.opened .expand.expanded ~ ul,
+nav.closed .expand.expanded ~ ul{
     height: auto;
+    display: flex;
 }
-nav.opened a{
+nav.opened a,
+nav.closed a{
     color: hsl(0, 0%, 41%);
     text-decoration: none;
 }
-nav.opened .buttons{
+nav.opened .buttons,
+nav.closed .buttons{
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-nav.opened .buttons button{
+nav.opened .buttons button,
+nav.closed .buttons button{
     height: 2.5em;
     color: hsl(0, 0%, 41%);
-}
-nav.opened .buttons button:last-of-type{
     border-radius: 10px;
-    border: 2px solid hsl(0, 0%, 41%);
-
+    
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
-nav.opened ~ .filter{
+nav.opened .buttons button:last-of-type,
+nav.closed .buttons button:last-of-type{
+    border: 2px solid hsl(0, 0%, 41%);
+}
+nav.opened ~ .filter,
+nav.closed ~ .filter{
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -169,6 +191,85 @@ nav.opened ~ .filter{
     right: 0;
     display: block;
     background-color: rgba(0, 0, 0, 0.5);
+}
+nav.opened ~ .filter{
+    animation-name: shadowFilterOn;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+/* nav when closed */
+
+nav.closed{
+    animation-name: navClosing;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+nav.closed ~ .filter{
+    animation-name: shadowFilterOff;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+} 
+nav.closed .openNav picture img:first-of-type{
+    display: block;
+}
+nav.closed .openNav picture img:last-of-type{
+    display: none;
+}
+nav.closed .links,
+nav.closed .expand,
+nav.closed .expand::after,
+nav.closed ul,
+nav.closed .expand ~ ul,
+nav.closed .expand.expanded,
+nav.closed .expand.expanded::after,
+nav.closed .expand.expanded ~ ul,
+nav.closed a,
+nav.closed .buttons,
+nav.closed .buttons button,
+nav.closed .buttons button:last-of-type{
+    animation-name: dissapear;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+/* animations */
+
+@keyframes navOpening {
+    0%{right: -166.75px;}
+    100%{right: 0;}
+}
+@keyframes navClosing {
+    0%{right: 0;}
+    99.99%{
+        padding: 1em;
+        right: -160px;
+        position: fixed;
+    }
+    100%{
+        min-width: 0;
+        padding: 0;
+        display: block;
+        flex-direction: column;
+        position: relative;
+        z-index: 1;
+    }
+}
+@keyframes menuButtonClosing {
+    0%{display: none;}
+    99.99%{display: block;left: 0;}
+    100%{display: block;}
+}
+@keyframes dissapear {
+    0%{display: auto;}
+    99.99%{display: none;}
+    100%{display: none;}
+}
+@keyframes shadowFilterOn {
+    0%{ filter:opacity(0); -webkit-filter:opacity(0); }
+    100%{ filter:opacity(1); -webkit-filter:opacity(1); }
+}
+@keyframes shadowFilterOff {
+    0%{ filter:opacity(1); -webkit-filter:opacity(1);}
+    100%{ filter:opacity(0); -webkit-filter:opacity(0);}
 }
 
 .attribution { font-size: 11px; text-align: center; }
