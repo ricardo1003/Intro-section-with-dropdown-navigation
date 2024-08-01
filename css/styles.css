@@ -30,6 +30,12 @@ nav .links{
 .openNav picture :last-child{
     display: none;
 }
+nav .buttons button:hover{
+    color: hsl(0, 0%, 8%);
+}
+nav .buttons button:last-of-type:hover{
+    outline: 1px solid hsl(0, 0%, 8%);
+}
 .filter{
     display: none;
 }
@@ -72,7 +78,12 @@ section> button:hover{
     color: hsl(0, 0%, 8%);
     outline: 1px solid hsl(0, 0%, 8%);
 }
-footer{
+section> button:focus{
+    background-color: hsl(0, 0%, 98%);
+    color: hsl(0, 0%, 8%);
+    outline: 1px solid hsl(0, 0%, 8%);
+}
+aside{
     padding: 1em 1em 3em;
     display: flex;
     justify-content: space-between;
@@ -163,8 +174,10 @@ nav.closed .expand.expanded::after{
 }
 nav.opened .expand.expanded ~ ul,
 nav.closed .expand.expanded ~ ul{
+    margin: 25px 0;
     height: auto;
     display: flex;
+    gap: 20px;
 }
 nav.opened a,
 nav.closed a{
@@ -312,6 +325,9 @@ nav.closed .buttons button:last-of-type{
         color: hsl(0, 0%, 41%);
         cursor: pointer;
     }
+    .features, .Company{
+        position: relative;
+    }
     nav .expand::after{
         content: "";
         width: 10px;
@@ -346,6 +362,7 @@ nav.closed .buttons button:last-of-type{
         -o-transform: rotate(180deg);
     }
     nav .expand.expanded ~ ul{
+        width: max-content;
         padding: 1.5em;
         margin-top: 10px;
         height: auto;
@@ -360,6 +377,8 @@ nav.closed .buttons button:last-of-type{
         -ms-border-radius: 10px;
         -o-border-radius: 10px;
 }
+    nav .features .expanded ~ ul{right: 0;}
+    nav .Company .expanded ~ ul{left: 0;}
     nav .links > a:hover{
         color: hsl(0, 0%, 8%);
     }
@@ -387,33 +406,35 @@ nav.closed .buttons button:last-of-type{
         -ms-border-radius: 10px;
         -o-border-radius: 10px;
     }
-    nav .buttons button:hover{
-        color: hsl(0, 0%, 8%);
-    }
     nav .buttons button:last-of-type{
         border: 2px solid hsl(0, 0%, 41%);
         padding: 0em 2em;
     }
-    nav .buttons button:last-of-type:hover{
-        outline: 1px solid hsl(0, 0%, 8%);
-    }
     main> img:last-of-type{
         display: block;
-        width: 40%;
+        width: 35%;
     }
     main> img:first-of-type{
         display: none;
     }
     main{
-        padding: 7.5em;
+        padding: 0 7.5em;
         display: flex;
         flex-direction: row-reverse;
         align-items: center;
+        gap: 5em;
+    }
+    main .container{
+        display: flex;
+        flex-direction: column;
+        align-self: normal;
+        justify-content: end;
+        gap: 10%;
     }
     section{
         text-align: left;
     }
     h1{
-        font-size: 4em;
+        font-size: 5em;
     }
 }
