@@ -7,6 +7,9 @@
     color: hsl(0, 0%, 8%);
 }
 body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     min-height: 100vh;
     font-size: 18px;
     font-weight: 500;
@@ -420,6 +423,7 @@ nav.closed .buttons button:last-of-type{
     main{
         padding: 0 7.5em;
         display: flex;
+        justify-self: center;
         flex-direction: row-reverse;
         align-items: center;
         gap: 5em;
